@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title>Register</title>
+</head>
+<body>
+    <div class="containerBox flex-center">
+        <div class="boxSesion" id="boxSesion">
+            <div class="titleLogin-SignUp-Box flex-center" id="title">
+                <h2 class="flex-center">Login</h2>
+            </div>
+
+            <hr>
+            <form action="">
+            <div class="userBox" id="userBox"></div>
+
+            <div class="emailBox">
+                <label for="email">Email:</label>
+                <input type="email" class="emailInput inputStyle" id="emailInput" placeholder="email@email.com">
+                <p id="emailError"></p>
+            </div>
+
+            <label for="password">Password:</label>
+            <div class="passwordBox">
+                <input type="password" id="passwordEntered" class="passwordEntered">
+                <div class="boxBtneyesOpen" id="eyesOpen">
+                    <i class="bi bi-eye flex-center"></i>
+                </div>
+                <div class="boxBtneyesOpen" id="eyesCloced">
+                    <i class="bi bi-eye-slash flex-center"></i>
+                </div>
+            </div>
+            <p id="keyError"></p>
+            <div class="rePasswordBox" id="rePasswordBox"></div>
+        </form>
+            <hr>
+            <p id="incompleteError"></p>
+            <input type="button" class="sendBtn" id="sendBtn" value="Login">
+        </div>
+        <div class="aggBox flex-center" id="aggBox">
+            <div class="agg"><i class="bi bi-person-fill-add"></i></div>
+        </div>
+        <div class="aggBox flex-center" id="loginBtnBoxIcon">
+            <div class="agg"><i class="bi bi-person-circle"></i></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
