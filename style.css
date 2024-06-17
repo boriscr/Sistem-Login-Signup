@@ -31,7 +31,7 @@ form {
     background: #fff;
     box-shadow: 0px 0px 10px 10px rgb(203, 204, 204);
     border-radius: 10px;
-    font-family: 'Segoe UI', Tahoma, Geneva, eyesOpendana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, eyesOpenIcondana, sans-serif;
 }
 
 p,
@@ -104,16 +104,16 @@ input {
 }
 
 .passwordBox>*,
-.boxBtneyesOpen {
+.boxBtneyesOpenIcon {
     width: 100%;
 }
 
-.boxBtneyesOpen {
+.boxBtneyesOpenIcon {
     width: auto;
     display: inline-flex;
 }
 
-.boxBtneyesOpen .bi {
+.boxBtneyesOpenIcon .bi {
     border-radius: 0px 20px 20px 0px;
     background: #000;
     color: #daf8d9;
@@ -128,8 +128,8 @@ input {
     width: 100%;
 }
 
-/*Agg User*/
-.aggBox {
+/*login-signupButtons User*/
+.login-signupBoxStyle {
     background: #292929;
     width: 50px;
     height: 50px;
@@ -138,7 +138,7 @@ input {
     box-shadow: 0px 0px 10px 5px rgb(15, 15, 15);
 }
 
-.aggBox:hover {
+.login-signupBoxStyle:hover {
     transform: scale(1.2);
     cursor: pointer;
 }

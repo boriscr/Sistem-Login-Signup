@@ -1,9 +1,8 @@
 let userReg = "boris"; //test user
 let passwordEnteredReg = 123; //test password
 
+let currentSession = "login"; // "login" o "signup"
 
-var loginSes = true;
-var signUpSes = false;
 //Selected Inputs and Button
 const email = document.getElementById("emailInput"); //email
 const passwordEntered = document.getElementById("passwordEntered");//Password 1
@@ -11,8 +10,17 @@ const sendBtn = document.getElementById("sendBtn");  //Button Send
 //Buttons login and signUp on start
 const btnlogin = document.getElementById("loginBtnBoxIcon");
 btnlogin.style.display = "none";//Btn loguin
-const btnSignUp = document.getElementById("aggBox");
+const btnSignUp = document.getElementById("signupBtnBoxIcon");
 btnSignUp.style.display = "flex";//Btn Sing up
+
+//*********Title change login-singup******************************/
+function titleChangeLoginSingup(title) {
+    const signUpTitleBox = document.getElementById("title");
+    const signUpTitleElement = document.createElement("h2");
+    signUpTitleBox.innerHTML = "";
+    signUpTitleElement.textContent = title;
+    signUpTitleBox.appendChild(signUpTitleElement);
+}
 
 //*********Error message when no data has been entered***********/
 //Function for errors messaje
@@ -35,78 +43,55 @@ errorsMessagesForInputs("emailError", email, "Email not entered.")
 errorsMessagesForInputs("keyError", passwordEntered, "Password not entered.")
 
 //*******************************************************************/
-
-//Btn Send
-sendBtn.addEventListener("click", function () {
-    if (email.value == userReg && passwordEntered.value == passwordEnteredReg && loginSes == true) {
-        console.log("yes")
-    }
-    else {
-        console.log("No")
-    }
-});
-
 ///////////////////////////////////////////////////////////
+//Btn eyesOpenIcon-No eyesOpenIcon passwordEntered
+//eyesOpenIcon - do not eyesOpenIcon password
+const eyesOpenIcon = document.getElementById("eyesOpenIcon");
+const eyesClocedIcon = document.getElementById("eyesClocedIcon");
+eyesClocedIcon.style.display = "none";
 
-//Btn eyesOpen-No eyesOpen passwordEntered
-//eyesOpen - do not eyesOpen password
-const eyesOpen = document.getElementById("eyesOpen");
-const eyesCloced = document.getElementById("eyesCloced");
-eyesCloced.style.display = "none";
-
-function eyesOpenPasswordEntered(name, eyesOpenIcon, eyesClocedIcon) {
+function eyesOpenIconPasswordEntered(name, eyesOpenIcon, eyesClocedIcon) {
     eyesOpenIcon.style.display = "none";
     eyesClocedIcon.style.display = "flex";
     const inputPasswordEntered1 = document.getElementById(name).type = "text";
 }
-function eyesClocedPasswordEntered(name, eyesOpenIcon, eyesClocedIcon) {
+function eyesClocedIconPasswordEntered(name, eyesOpenIcon, eyesClocedIcon) {
     eyesOpenIcon.style.display = "flex";
     eyesClocedIcon.style.display = "none";
     const inputPasswordEntered1 = document.getElementById(name).type = "password";
 }
 //Input password enter 1 loguin
 //icon eyes open 
-eyesOpen.addEventListener("click", function () {
-    eyesOpenPasswordEntered("passwordEntered", eyesOpen, eyesCloced)
+eyesOpenIcon.addEventListener("click", function () {
+    eyesOpenIconPasswordEntered("passwordEntered", eyesOpenIcon, eyesClocedIcon)
 })
 //icon eyes cloced
-eyesCloced.addEventListener("click", function () {
-    eyesClocedPasswordEntered("passwordEntered", eyesOpen, eyesCloced)
+eyesClocedIcon.addEventListener("click", function () {
+    eyesClocedIconPasswordEntered("passwordEntered", eyesOpenIcon, eyesClocedIcon)
 })
 
 ////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////
 //Btn signUpTitle
-const aggBox = document.getElementById("aggBox");
-aggBox.addEventListener("click", function () {
-    signUpSes = true;
-    loginSes = false;
+const signupBtnBoxIcon = document.getElementById("signupBtnBoxIcon");
+signupBtnBoxIcon.addEventListener("click", function () {
+    currentSession = "signup";
+
     //Border Box Sesion
     const boxSesion = document.getElementById("boxSesion");
     boxSesion.style.border = "3px solid #07212779";
 
     //Title signUp
-    const signUpTitleBox = document.getElementById("title");
-    const signUpTitleElement = document.createElement("h2");
-    signUpTitleBox.innerHTML = "";
-    signUpTitleElement.textContent = "Sign Up";
-    signUpTitleBox.appendChild(signUpTitleElement);
+    titleChangeLoginSingup("Sign Up");
+
     ///////////////////////////////////////////////////////////
     //Elements**
     //User Input
     const userBox = document.getElementById("userBox");
-    const userTextElement = document.createElement("p");
-    userBox.appendChild(userTextElement);
-    userTextElement.textContent = "User:";
-    const userInputElement = document.createElement("input");
-    userInputElement.type = "text";
-    userInputElement.id = "user";
-    userInputElement.className="inputStyle"
-    userBox.appendChild(userInputElement);
-    const userError = document.createElement("div");
-    userError.id = "userError";
-    userBox.appendChild(userError);
+    userBox.innerHTML = `<label for="user">User: </label>
+                        <input type="text" id="user" class="inputStyle">
+                        <p id="userError"></p>`;
 
     //*********Error message when no data has been entered / Sign up***********/
     //Function for errors messaje
@@ -116,74 +101,45 @@ aggBox.addEventListener("click", function () {
     //**************************************************************/
 
     //Input repeat password
-    //rePasswordBox.style.display = "flex";
     const rePasswordBox = document.getElementById("rePasswordBox");
-    const elementLabel = document.createElement("label");
-    elementLabel.setAttribute("for", "passwordEntered2");
-    elementLabel.textContent = "Repeat password:";
-    rePasswordBox.appendChild(elementLabel);
-    //Create input password element
-    const passwordBox2 = document.createElement("div");
-    passwordBox2.id = "passwordBox2";
-    passwordBox2.className = "passwordBox";
-    rePasswordBox.appendChild(passwordBox2);
-    //Input Password repeat
-    const passwordBox2Child = document.getElementById("passwordBox2");
-    const elementInputPassword = document.createElement("input");
-    elementInputPassword.type = "password";
-    elementInputPassword.id = "passwordEntered2"
-    elementInputPassword.className="passwordEntered";
-    passwordBox2Child.appendChild(elementInputPassword);
-    //Box icon eyes
-    const eyesOpen2 = document.createElement("div");
-    eyesOpen2.className = "boxBtneyesOpen";
-    eyesOpen2.id = "eyesOpen2";
-    passwordBox2Child.appendChild(eyesOpen2);
-    //Icon eyes
-    const iconOpen = document.createElement("i");
-    iconOpen.className = "bi bi-eye flex-center";
-    const eyesOpen2Box = document.getElementById("eyesOpen2");
-    eyesOpen2Box.appendChild(iconOpen);
-    //Box icon eyes cloced
-    const eyesCloced2 = document.createElement("div");
-    eyesCloced2.id = "eyesCloced2";
-    eyesCloced2.className = "boxBtneyesOpen";
-    passwordBox2Child.appendChild(eyesCloced2);
-
-    //Icon eyes cloced
-    const iconCloced = document.createElement("i");
-    iconCloced.className = "bi bi-eye-slash flex-center";
-    const eyesCloced2Box = document.getElementById("eyesCloced2");
-    eyesCloced2Box.appendChild(iconCloced);
-
-    //Message error
-    const keyError2 = document.createElement("p");
-    keyError2.id = "keyError2";
-    rePasswordBox.appendChild(keyError2);
+    rePasswordBox.innerHTML = `<label for="passwordEntered2">Repeat password:</label>
+                            <div id="passwordBox2" class="passwordBox">
+                            <input type="password" id="passwordEntered2" class="passwordEntered">
+                            <div id="eyesOpenIcon2" class="boxBtneyesOpenIcon">
+                            <i class="bi bi-eye flex-center"></i>
+                            </div>
+                            <div id="eyesClocedIcon2" class="boxBtneyesOpenIcon">
+                            <i class="bi bi-eye-slash flex-center"></i>
+                            </div>
+                            </div>
+                            <p id="keyError2"></p>`;
     ////////////////////////////////////////////////////////
 
-    //const eyesCloced2 = document.getElementById("eyesCloced2");
-    eyesCloced2.style.display = "none";
-    eyesOpen2.addEventListener("click", function () {
-        eyesOpenPasswordEntered("passwordEntered2", eyesOpen2, eyesCloced2)
+    //const eyesClocedIcon2 = document.getElementById("eyesClocedIcon2");
+    const eyesClocedIcon2 = document.getElementById("eyesClocedIcon2");
+    const eyesOpenIcon2 = document.getElementById("eyesOpenIcon2");
+
+    eyesClocedIcon2.style.display = "none";
+    eyesOpenIcon2.addEventListener("click", function () {
+        eyesOpenIconPasswordEntered("passwordEntered2", eyesOpenIcon2, eyesClocedIcon2)
     })
-    eyesCloced2.addEventListener("click", function () {
-        eyesClocedPasswordEntered("passwordEntered2", eyesOpen2, eyesCloced2)
+    eyesClocedIcon2.addEventListener("click", function () {
+        eyesClocedIconPasswordEntered("passwordEntered2", eyesOpenIcon2, eyesClocedIcon2)
     })
     //Different password error message
-    const passwordEntered2=document.getElementById("passwordEntered2");
+    const passwordEntered2 = document.getElementById("passwordEntered2");
     const passwordEntered = document.getElementById("passwordEntered");//Password 1
-
-    passwordBox2.addEventListener("input", function(){
-        if(passwordEntered2.value!=passwordEntered.value){
-            const keyError2=document.getElementById("keyError2");
-            keyError2.textContent="Different passwords.";
-            keyError2.className="errorMessage";
+    passwordEntered2.addEventListener("input", function () {
+        if (passwordEntered2.value != passwordEntered.value) {
+            const keyError2 = document.getElementById("keyError2");
+            keyError2.textContent = "Different passwords.";
+            keyError2.className = "errorMessage";
         } else {
-            keyError2.innerHTML="";
+            keyError2.innerHTML = "";
         }
     })
     ////////////////////////////////////////////////////////
+
     //Btn Send Value
     // Change the value of the login button to "SignUp"
     sendBtn.value = "SignUp";
@@ -193,21 +149,37 @@ aggBox.addEventListener("click", function () {
     btnlogin.style.display = "flex"
 })
 
+const user = document.getElementById("user");
+sendBtn.addEventListener("click", function () {
+    const incompleteError = document.getElementById("incompleteError");
+    const passwordEntered2 = document.getElementById("passwordEntered2");
+    //Btn Send
+
+    if (email.value == "" || passwordEntered.value == "" && currentSession == "login") {
+        incompleteError.textContent = "Antes de continuar, complete el formulario.";
+        incompleteError.className = "errorMessage";
+    } else {
+        incompleteError.innerHTML = "";
+    }
+    if (user.value == "" || email.value == "" || passwordEntered.value == "" || passwordEntered2.value == "" && currentSession == "signup") {
+        incompleteError.textContent = "Antes de continuar, complete el formulario.";
+        incompleteError.className = "errorMessage";
+    } else {
+        incompleteError.innerHTML = "";
+    }
+})
+
 //Btn login sesion
 const loginBtnBoxIcon = document.getElementById("loginBtnBoxIcon");
 loginBtnBoxIcon.addEventListener("click", function () {
-    loginSes = true;
-    signleSes = false;
+    currentSession = "login";
+
     //Border Box Sesion
     const boxSesion = document.getElementById("boxSesion");
     boxSesion.style.border = "none";
 
     //Title signUp
-    const signUpTitleBox = document.getElementById("title");
-    const signUpTitleElement = document.createElement("h2");
-    signUpTitleBox.innerHTML = "";
-    signUpTitleElement.textContent = "Login";
-    signUpTitleBox.appendChild(signUpTitleElement);
+    titleChangeLoginSingup("Login");
 
     //button login-signUp
     btnSignUp.style.display = "flex";
@@ -223,9 +195,7 @@ loginBtnBoxIcon.addEventListener("click", function () {
     rePasswordBox.innerHTML = "";
 
     /////////////////////////////////////////////////////////
-
     //Btn Send Value
     // Cambia el valor del botón de envío a "Login"
     sendBtn.value = "Login";
-
 })
